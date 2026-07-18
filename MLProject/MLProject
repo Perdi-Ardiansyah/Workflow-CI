@@ -1,0 +1,8 @@
+name: Proyek_Pelatihan_Otomatis
+
+# Mengarahkan MLflow untuk menyiapkan lingkungan Python menggunakan Conda
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    command: "python modelling.py"
