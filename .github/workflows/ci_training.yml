@@ -1,0 +1,33 @@
+name: Workflow CI MLflow Project
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  mlflow-project-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.12.7
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.7'
+
+    - name: Install CI Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install mlflow==2.19.0 pandas scikit-learn
+
+    # Langkah Utama: Menjalankan skrip via perintah mlflow run (Sesuai Syarat Dokumen Basic)
+    - name: Run mlflow project
+      run: |
+        cd MLProject
+        mlflow run . --no-conda
+
+    - name: Get latest MLflow run_id
+      run: |
+        echo "MLflow run completed successfully!"
